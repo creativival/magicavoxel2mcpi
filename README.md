@@ -29,7 +29,7 @@ cd xxx/mcpipy
 python magicavoxel2mcpi.py
 ```
 
-## Rotaiom model:   
+## Rotation model:   
 alpha (x-rotaion degree)  
 beta (y-rotaion degree)   
 gamma (z-rotaion degree)    
