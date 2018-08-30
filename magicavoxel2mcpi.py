@@ -87,26 +87,26 @@ def create_voxel(ply):
                     blockData = 0
         # position to set block
         if vertex1[0] == vertex2[0] and vertex2[0] == vertex3[0]:#y-z plane
-            y = min(int(vertex1[1]), int(vertex2[1]), int(vertex3[1]))
-            z = min(int(vertex1[2]), int(vertex2[2]), int(vertex3[2]))
+            y = min(float(vertex1[1]), float(vertex2[1]), float(vertex3[1]))
+            z = min(float(vertex1[2]), float(vertex2[2]), float(vertex3[2]))
             if vertex1[1] == vertex2[1]:
-                x = int(vertex1[0])
+                x = float(vertex1[0])
             else:
-                x = int(vertex1[0]) - 1
+                x = float(vertex1[0]) - 1
         elif vertex1[1] == vertex2[1] and vertex2[1] == vertex3[1]:#z-x plane
-            z = min(int(vertex1[2]), int(vertex2[2]), int(vertex3[2]))
-            x = min(int(vertex1[0]), int(vertex2[0]), int(vertex3[0]))
+            z = min(float(vertex1[2]), float(vertex2[2]), float(vertex3[2]))
+            x = min(float(vertex1[0]), float(vertex2[0]), float(vertex3[0]))
             if vertex1[2] == vertex2[2]:
-                y = int(vertex1[1])
+                y = float(vertex1[1])
             else:
-                y = int(vertex1[1]) - 1
+                y = float(vertex1[1]) - 1
         else:#x-y plane
-            x = min(int(vertex1[0]), int(vertex2[0]), int(vertex3[0]))
-            y = min(int(vertex1[1]), int(vertex2[1]), int(vertex3[1]))
+            x = min(float(vertex1[0]), float(vertex2[0]), float(vertex3[0]))
+            y = min(float(vertex1[1]), float(vertex2[1]), float(vertex3[1]))
             if vertex1[0] == vertex2[0]:
-                z = int(vertex1[2])
+                z = float(vertex1[2])
             else:
-                z = int(vertex1[2]) - 1
+                z = float(vertex1[2]) - 1
         setblock(x, y, z)
 
 create_voxel(ply)
