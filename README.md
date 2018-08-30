@@ -30,9 +30,9 @@ python magicavoxel2mcpi.py
 ```
 
 ## Rotation model:   
-alpha (x-rotaion degree)  
-beta (y-rotaion degree)   
-gamma (z-rotaion degree)    
+alpha (x-rotation degree)  
+beta (y-rotation degree)   
+gamma (z-rotation degree)    
 Note: It is the coordinate axis of MagicaVoxel not Minecraft.  
 
 ![magicavoxel2mcpi_rotaion](https://user-images.githubusercontent.com/33368327/44855928-1a909900-aca7-11e8-9182-99df906f43be.jpg)
