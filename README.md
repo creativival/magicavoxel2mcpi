@@ -51,7 +51,9 @@ Terminal
 python magicavoxel2mcpi_animation.py
 ```
 
-<img width="1440" alt="screenshot_1125" src="https://user-images.githubusercontent.com/33368327/44855949-28deb500-aca7-11e8-9145-c3ae320ff334.png">
+![w6zcgpvpav9c3iza](https://user-images.githubusercontent.com/33368327/44870045-05793180-acca-11e8-8d97-84c9c7cde7c2.gif)
+
+
 
 
 
