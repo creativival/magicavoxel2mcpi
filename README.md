@@ -7,7 +7,7 @@ Python script to connect MagicaVoxel to Minecraft PI.
 Reqire: Minecraft Pi (Rasppberry Pi) or  
         Minecraft (JAVA EDITION) + Forge + RaspberryJamMod
         
-Create a voxel-model with MagicaVoxel and export ply (polygon filr format).
+Create a voxel-model with MagicaVoxel and export ply (polygon file format).
 
 Download python-scripts.zip from    
 https://github.com/arpruss/raspberryjammod/releases
