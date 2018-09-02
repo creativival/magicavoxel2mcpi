@@ -35,7 +35,7 @@ python magicavoxel2mcpi.py
 ```
 
 ## Colors
-There are 8 colors to reproduce. When create, you need to use only 8 colors 
+There are 8 colors to reproduce. When create, you need to use only 8 colors     
 Black(0, 0, 0) White (255, 255, 255) Red(255, 0, 0) Green(0, 255, 0) Blue(0,0,255) Yellow(255, 255 0) Cyan(0, 255, 255) Magenta(255, 0, 255)
 
 ## Rotation:   
