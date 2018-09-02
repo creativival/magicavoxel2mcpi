@@ -10,18 +10,30 @@ import server
 import math
 from time import sleep
 
-# polygon file format from MagicaVoxel
+# polygon file format exported from MagicaVoxel
 ply = 'chick.ply'
 
-# Origin to create
+polygon_data = open(ply, "r") # open .ply file
+
+lines = polygon_data.readlines()
+
+# Origin to create (Minecraft)
 x0 = 0
 y0 = 0
 z0 = 0
 
-# Rotation degree
+# Model size
+even = False
+
+# Rotation degree (MagicaVpxel)
 alpha = 0 # x-axis
 beta  = 0 # y-axis
-gamma = 0 # z-axis
+gamma = 180 # z-axis
+
+# Offset for rotation (MagicaVpxel)
+offset_x = 0 # x-axis
+offset_y = 0 # y-axis
+offset_z = 0 # z-axis
 
 # Block ID (defalut = 35:0 = White Wool)
 blockTypeId = 35
@@ -29,32 +41,48 @@ blockData = 0
 
 mc = minecraft.Minecraft.create(server.address)
 
-def create_voxel(ply):
+def create_voxel(lines):
     mc.postToChat('create polygon file format model')
 
     def setblock(x, y, z):
-        # x-rotation degree alpha
-        xx = x
-        yx = (y * math.cos(math.radians(alpha)) - z * math.sin(math.radians(alpha)))
-        zx = (y * math.sin(math.radians(alpha)) + z * math.cos(math.radians(alpha)))
-        # y-rotation degree beta
-        xy = (zx * math.sin(math.radians(beta)) + xx * math.cos(math.radians(beta)))
-        yy = yx
-        zy = (zx * math.cos(math.radians(beta)) - xx * math.sin(math.radians(beta)))
-        # z-rotation degree gamma
-        xz = (xy * math.cos(math.radians(gamma)) - yy * math.sin(math.radians(gamma)))
-        yz = (xy * math.sin(math.radians(gamma)) + yy * math.cos(math.radians(gamma)))
-        zz = zy
-        # bug fix
-        x = round(xz, 3)
-        y = round(yz, 3)
-        z = round(zz, 3)
-        # set block
-        mc.setBlock(x0 + y, y0 + z, z0 + x, blockTypeId, blockData)
-
-    polygon_data = open(ply, "r") # open .ply file
-
-    lines = polygon_data.readlines()
+        if even:
+            # x-rotation degree alpha
+            xx = x - offset_x + 0.5
+            yx = ((y - offset_y + 0.5) * math.cos(math.radians(alpha)) - (z - offset_z + 0.5) * math.sin(math.radians(alpha)))
+            zx = ((y - offset_y + 0.5) * math.sin(math.radians(alpha)) + (z - offset_z + 0.5) * math.cos(math.radians(alpha)))
+            # y-rotation degree beta
+            xy = (zx * math.sin(math.radians(beta)) + xx * math.cos(math.radians(beta)))
+            yy = yx
+            zy = (zx * math.cos(math.radians(beta)) - xx * math.sin(math.radians(beta)))
+            # z-rotation degree gamma
+            xz = (xy * math.cos(math.radians(gamma)) - yy * math.sin(math.radians(gamma)))
+            yz = (xy * math.sin(math.radians(gamma)) + yy * math.cos(math.radians(gamma)))
+            zz = zy
+            # bug fix
+            x = round(xz, 3)
+            y = round(yz, 3)
+            z = round(zz, 3)
+            # set block
+            mc.setBlock(x0 + y + offset_y, y0 + z + offset_z, z0 + x + offset_x, blockTypeId, blockData)
+        else: # odd
+            # x-rotation degree alpha
+            xx = x - offset_x
+            yx = ((y - offset_y) * math.cos(math.radians(alpha)) - (z - offset_z) * math.sin(math.radians(alpha)))
+            zx = ((y - offset_y) * math.sin(math.radians(alpha)) + (z - offset_z) * math.cos(math.radians(alpha)))
+            # y-rotation degree beta
+            xy = (zx * math.sin(math.radians(beta)) + xx * math.cos(math.radians(beta)))
+            yy = yx
+            zy = (zx * math.cos(math.radians(beta)) - xx * math.sin(math.radians(beta)))
+            # z-rotation degree gamma
+            xz = (xy * math.cos(math.radians(gamma)) - yy * math.sin(math.radians(gamma)))
+            yz = (xy * math.sin(math.radians(gamma)) + yy * math.cos(math.radians(gamma)))
+            zz = zy
+            # bug fix
+            x = round(xz, 3)
+            y = round(yz, 3)
+            z = round(zz, 3)
+            # set block
+            mc.setBlock(x0 + y + offset_y, y0 + z + offset_z, z0 + x + offset_x, blockTypeId, blockData)
 
     element_face = lines[11].split()
 
@@ -109,4 +137,4 @@ def create_voxel(ply):
                 z = float(vertex1[2]) - 1
         setblock(x, y, z)
 
-create_voxel(ply)
+create_voxel(lines)

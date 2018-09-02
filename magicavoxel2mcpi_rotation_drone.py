@@ -11,7 +11,7 @@ import math
 from time import sleep
 
 # polygon file format exported from MagicaVoxel
-plys = ['frog1.ply', 'frog2.ply', 'frog3.ply', 'frog4.ply', 'frog5.ply', 'frog4.ply', 'frog3.ply', 'frog2.ply']
+plys = ['drone-body.ply', 'drone-propeller.ply']
 
 lines_list = []
 
@@ -23,7 +23,7 @@ for i in range(len(plys)):
 reset_stop = 0.01
 
 # create_stop
-create_stop  = 0.1
+create_stop  = 0.5
 
 # repeat repeat_count
 repeat = 1000
@@ -34,17 +34,17 @@ y0 = 0
 z0 = 0
 
 # Model size
-even = True
+even = False
 
 # Rotation degree (MagicaVpxel)
 alpha = 0 # x-axis
 beta  = 0 # y-axis
 gamma = 0 # z-axis
 
-# Offset for rotation (MagicaVpxel)
+# Offset for rotation(MagicaVpxel)
 offset_x = 0 # x-axis
 offset_y = 0 # y-axis
-offset_z = 0 # z-axis
+offset_z = 7 # z-axis
 
 # Block ID (defalut = 35:0 = White Wool)
 blockTypeId = 35
@@ -152,8 +152,32 @@ def create_voxel(lines):
                 z = float(vertex1[2]) - 1
         setblock(x, y, z)
 
+create_voxel(lines_list[0])
+
 for i in range(repeat):
-    reset(-10, 0, -10, 10, 20, 10)
+    x0 = 20
+    y0 = 0
+    z0 = 0
+    reset(-25, 18, -25, 25, 18, 25)
     sleep(reset_stop)
-    create_voxel(lines_list[i % len(lines_list)])
-    sleep(create_stop)
+    gamma = 6 * i
+    x0 = 34
+    y0 = 0
+    z0 = 0
+    create_voxel(lines_list[1])
+    x0 = 6
+    y0 = 0
+    z0 = 0
+    create_voxel(lines_list[1])
+    x0 = 20
+    y0 = 0
+    z0 = -14
+    create_voxel(lines_list[1])
+    x0 = 20
+    y0 = 0
+    z0 = 14
+    create_voxel(lines_list[1])
+    if (6 * i) % 90 == 0:
+        sleep (2 * create_stop)
+    else:
+        sleep(create_stop)
