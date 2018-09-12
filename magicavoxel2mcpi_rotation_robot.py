@@ -109,25 +109,35 @@ def create_voxel(lines):
         if vertex1[3] == '0':
             if vertex1[4] == '0':
                 if vertex1[5] == '0':
-                    blockData = 15
+                    blockData = 15 # black 0,0,0
                 else:
-                    blockData = 5
+                    blockData = 11 # blue 0,0,255
+            elif vertex1[4] == '80':
+                if vertex1[5] == '0':
+                    blockData = 13 # green 0,80,0
+                else:
+                    blockData = 0 # white(defalut) 0,80,x
             else:
                 if vertex1[5] == '0':
-                    blockData = 13
+                    blockData = 5 # lime 0,255,0
                 else:
-                    blockData = 9
+                    blockData = 9 # cyan 0,255,255
         else:
             if vertex1[4] == '0':
                 if vertex1[5] == '0':
-                    blockData = 14
+                    blockData = 14 # red 255,0,0
                 else:
-                    blockData = 2
+                    blockData = 2 # magenta 255,0,255
+            elif vertex1[4] == '165':
+                if vertex1[5] == '0':
+                    blockData = 1 # orange 255,165,0
+                else:
+                    blockData = 0 # white(defalut) 255,165,x
             else:
                 if vertex1[5] == '0':
-                    blockData = 4
+                    blockData = 4 # yellow 255,255,0
                 else:
-                    blockData = 0
+                    blockData = 0 # white(defalut) x,x,x
         # position to set block
         if vertex1[0] == vertex2[0] and vertex2[0] == vertex3[0]:#y-z plane
             y = min(float(vertex1[1]), float(vertex2[1]), float(vertex3[1]))
