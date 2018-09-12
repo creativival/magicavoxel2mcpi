@@ -35,8 +35,8 @@ python magicavoxel2mcpi.py
 ```
 
 ## Colors
-There are 8 colors to reproduce. When create, you need to use only 8 colors     
-Black(0, 0, 0) White (255, 255, 255) Red(255, 0, 0) Green(0, 255, 0) Blue(0,0,255) Yellow(255, 255 0) Cyan(0, 255, 255) Magenta(255, 0, 255)
+There are 10 colors to reproduce. When create, you need to use only 8 colors     
+Black(0, 0, 0) White (255, 255, 255) Red(255, 0, 0) lime(0, 255, 0) Blue(0,0,255) Yellow(255, 255 0) Cyan(0, 255, 255) Magenta(255, 0, 255) Orange(255,165,0) Green(0,80,0)     
 
 ## Rotation:   
 alpha (x-rotation degree)  
@@ -78,6 +78,20 @@ python magicavoxel2mcpi_rotation_robot.py
 
 
 ![5bbdsr7pmh3g5fcp](https://user-images.githubusercontent.com/33368327/44958372-48314880-af1a-11e8-94f7-c198547c6eba.gif)
+
+## Walking Cat
+
+Create and separate body and limb. Export "ply" and move ".ply" files into "mcpipy" folder    
+
+Edit magicavoxel2mcpi_walking_cat.py    
+
+Terminal command     
+
+```
+python magicavoxel2mcpi_walking_cat.py
+```
+
+![z-ew2x_n_dmwhkfi](https://user-images.githubusercontent.com/33368327/45431860-77e30c00-b6e3-11e8-9c9b-9ef99bb9fdbe.gif)
 
 
 
