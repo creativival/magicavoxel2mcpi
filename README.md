@@ -34,6 +34,10 @@ cd xxx/mcpipy
 python magicavoxel2mcpi.py
 ```
 
+## Colors
+There are 8 colors to reproduce. When create, you need to use only 8 colors     
+Black(0, 0, 0) White (255, 255, 255) Red(255, 0, 0) Green(0, 255, 0) Blue(0,0,255) Yellow(255, 255 0) Cyan(0, 255, 255) Magenta(255, 0, 255)
+
 ## Rotation:   
 alpha (x-rotation degree)  
 beta (y-rotation degree)   
@@ -45,7 +49,7 @@ Note: It is the coordinate axis of MagicaVoxel not Minecraft.
 ## Animation:  
 Create a few voxel-model and export "ply" and move ".ply" files into "mcpipy" folder
 
-edit magicavoxel2mcpi_animation.py     
+Edit magicavoxel2mcpi_animation.py     
 
 ```
 magicavoxel2mcpi_animation.py
@@ -60,6 +64,20 @@ python magicavoxel2mcpi_animation.py
 
 ![w6zcgpvpav9c3iza](https://user-images.githubusercontent.com/33368327/44870045-05793180-acca-11e8-8d97-84c9c7cde7c2.gif)
 
+## Rotating Animation
+
+Divide the rotating parts, Create a voxel-model and export "ply" and move ".ply" files into "mcpipy" folder    
+
+Edit magicavoxel2mcpi_rotation_robot.py or rotation_drone.py    
+
+Terminal command     
+
+```
+python magicavoxel2mcpi_rotation_robot.py
+```
+
+
+![5bbdsr7pmh3g5fcp](https://user-images.githubusercontent.com/33368327/44958372-48314880-af1a-11e8-94f7-c198547c6eba.gif)
 
 
 
