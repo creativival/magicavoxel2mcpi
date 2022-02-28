@@ -41,7 +41,7 @@ def is_included_six_numbers(_line):
     return True
 
 
-def ply_to_position_list(ply_file):
+def ply_to_positions(ply_file):
     # PLY よりボックスの座標を読み込む
     block_type_id = 35
     box_positions = set()

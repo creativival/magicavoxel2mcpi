@@ -5,7 +5,7 @@
 #
 
 
-from voxel_util import create_voxel, post_to_chat, ply_to_position_list, reset
+from voxel_util import create_voxel, post_to_chat, ply_to_positions, reset
 from time import sleep
 
 # polygon file format exported from MagicaVoxel
@@ -55,15 +55,12 @@ model_settings = {
 }
 
 post_to_chat('animation polygon file format model')
-box_positions_list = [ply_to_position_list(ply_file) for ply_file in ply_files]
+box_positions_list = [ply_to_positions(ply_file) for ply_file in ply_files]
 
-i = 0
-while True:
+
+for i in range(repeat_count):
     print(i)
     reset(*reset_area)
     sleep(reset_stop)
     create_voxel(box_positions_list[i % len(ply_files)], model_settings)
     sleep(create_stop)
-    i += 1
-    if i > repeat_count:
-        break

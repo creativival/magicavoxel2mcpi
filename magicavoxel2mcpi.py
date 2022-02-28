@@ -4,7 +4,7 @@
 # MagicaVoxel2MinecraftPi
 #
 
-from voxel_util import create_voxel, post_to_chat, ply_to_position_list
+from voxel_util import create_voxel, post_to_chat, ply_to_positions
 
 # polygon file format exported from MagicaVoxel
 ply_file = 'chick.ply'
@@ -41,5 +41,5 @@ model_settings = {
 }
 
 post_to_chat('create polygon file format model')
-box_positions = ply_to_position_list(ply_file)
+box_positions = ply_to_positions(ply_file)
 create_voxel(box_positions, model_settings)
