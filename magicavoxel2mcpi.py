@@ -10,9 +10,9 @@ from voxel_util import create_voxel, post_to_chat, ply_to_positions
 ply_file = 'chick.ply'
 
 # Origin to create (Minecraft)
-x0 = 0
+x0 = 10
 y0 = 0
-z0 = 0
+z0 = 10
 
 # Model size
 is_even = False

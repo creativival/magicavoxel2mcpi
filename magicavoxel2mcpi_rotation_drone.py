@@ -22,7 +22,7 @@ create_stop = 0.5
 repeat_count = 50
 
 # Origin to create (Minecraft)
-x0 = 20
+x0 = 0
 y0 = 0
 z0 = 0
 
@@ -57,26 +57,27 @@ body_box_positions = ply_to_positions(body_ply_file)
 part_box_positions = ply_to_positions(part_ply_file)
 
 # create body
+model_settings['x0'] = 0
 create_voxel(body_box_positions, model_settings)
 # create parts
 for i in range(repeat_count):
     print(i)
-    reset(-5, 18, -25, 45, 18, 25)
+    reset(-25, 18, -25, 25, 18, 25)
     sleep(reset_stop)
     model_settings['gamma'] = 6 * i
-    model_settings['x0'] = 34
+    model_settings['x0'] = 14
     model_settings['y0'] = 0
     model_settings['z0'] = 0
     create_voxel(part_box_positions, model_settings)
-    model_settings['x0'] = 6
+    model_settings['x0'] = -14
     model_settings['y0'] = 0
     model_settings['z0'] = 0
     create_voxel(part_box_positions, model_settings)
-    model_settings['x0'] = 20
+    model_settings['x0'] = 0
     model_settings['y0'] = 0
     model_settings['z0'] = -14
     create_voxel(part_box_positions, model_settings)
-    model_settings['x0'] = 20
+    model_settings['x0'] = 0
     model_settings['y0'] = 0
     model_settings['z0'] = 14
     create_voxel(part_box_positions, model_settings)

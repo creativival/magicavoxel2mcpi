@@ -139,6 +139,7 @@ def set_block(x, y, z, block_type_id, block_data, model_settings):
 
     if is_even:
         x += 0.5
+        y += 0.5
         z += 0.5
 
     # x-rotation degree alpha
