@@ -14,7 +14,7 @@ x0 = 0
 y0 = 0
 z0 = 0
 
-# Block ID (defalut = 35:0 = White Wool)
+# Block ID (default = 35:0 = White Wool)
 blockTypeId = 35
 blockData = 0
 

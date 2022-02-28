@@ -33,7 +33,7 @@ y0 = 0
 z0 = -100
 
 # Model size
-even = True
+is_even = True
 
 # Rotation degree (MagicaVoxel)
 alpha = 0 # x-axis
@@ -45,7 +45,7 @@ offset_x = 0 # x-axis
 offset_y = 0 # y-axis
 offset_z = 0 # z-axis
 
-# Block ID (defalut = 35:0 = White Wool)
+# Block ID (default = 35:0 = White Wool)
 blockTypeId = 35
 blockData = 0
 
@@ -59,7 +59,7 @@ def create_voxel(lines):
     #mc.postToChat('create polygon file format model')
 
     def setblock(x, y, z):
-        if even:
+        if is_even:
             # x-rotation degree alpha
             xx = x - offset_x + 0.5
             yx = ((y - offset_y + 0.5) * math.cos(math.radians(alpha)) - (z - offset_z + 0.5) * math.sin(math.radians(alpha)))
@@ -115,7 +115,7 @@ def create_voxel(lines):
                 if vertex1[5] == '0':
                     blockData = 13 # green 0,80,0
                 else:
-                    blockData = 0 # white(defalut) 0,80,x
+                    blockData = 0 # white(default) 0,80,x
             else:
                 if vertex1[5] == '0':
                     blockData = 5 # lime 0,255,0
@@ -131,12 +131,12 @@ def create_voxel(lines):
                 if vertex1[5] == '0':
                     blockData = 1 # orange 255,165,0
                 else:
-                    blockData = 0 # white(defalut) 255,165,x
+                    blockData = 0 # white(default) 255,165,x
             else:
                 if vertex1[5] == '0':
                     blockData = 4 # yellow 255,255,0
                 else:
-                    blockData = 0 # white(defalut) x,x,x
+                    blockData = 0 # white(default) x,x,x
         # position to set block
         if vertex1[0] == vertex2[0] and vertex2[0] == vertex3[0]:#y-z plane
             y = min(float(vertex1[1]), float(vertex2[1]), float(vertex3[1]))
