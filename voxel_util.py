@@ -15,9 +15,11 @@ def post_to_chat(message):
     mc.postToChat(message)
 
 
-def create_voxel(ply_file, model_settings):
-    box_positions = ply_to_position_list(ply_file)
+def reset(x1, y1, z1, x2, y2, z2):
+    mc.setBlocks(x1, y1, z1, x2, y2, z2, 0)
 
+
+def create_voxel(box_positions, model_settings):
     for bp in box_positions:
         x = bp[0]
         y = bp[1]
@@ -156,10 +158,11 @@ def set_block(x, y, z, block_type_id, block_data, model_settings):
     x = round(xz, 3)
     y = round(yz, 3)
     z = round(zz, 3)
-    # player position
-    player_position = list(map(int, mc.player.getPos()))
-    x += player_position[2]
-    y += player_position[0]
-    z += player_position[1]
     # set block
-    mc.setBlock(x0 + y + offset_y, y0 + z + offset_z, z0 + x + offset_x, block_type_id, block_data)
+    mc.setBlock(
+        x0 + y + offset_y,
+        y0 + z + offset_z,
+        z0 + x + offset_x,
+        block_type_id,
+        block_data
+    )
