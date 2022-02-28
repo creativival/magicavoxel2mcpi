@@ -6,7 +6,6 @@
 
 import mcpi.minecraft as minecraft
 import mcpi.block as block
-import server
 import math
 from time import sleep
 
@@ -19,7 +18,7 @@ z0 = 0
 blockTypeId = 35
 blockData = 0
 
-mc = minecraft.Minecraft.create(server.address)
+mc = minecraft.Minecraft.create()
 mc.postToChat('create_coordinate_axis')
 
 for i in range(30):

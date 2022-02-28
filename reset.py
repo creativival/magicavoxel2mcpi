@@ -6,9 +6,8 @@
 
 import mcpi.minecraft as minecraft
 import mcpi.block as block
-import server
 
-mc = minecraft.Minecraft.create(server.address)
+mc = minecraft.Minecraft.create()
 mc.postToChat('reset the world')
 mc.setBlocks(-100, 0, -100, 100, 63, 100, 0, 0)
 mc.setBlocks(-100, -63, -100, 100, -2, 100, 1, 0)

@@ -6,7 +6,6 @@
 
 import mcpi.minecraft as minecraft
 import mcpi.block as block
-import server
 import math
 from time import sleep
 
@@ -36,12 +35,12 @@ z0 = 0
 # Model size
 even = False
 
-# Rotation degree (MagicaVpxel)
+# Rotation degree (MagicaVoxel)
 alpha = 0 # x-axis
 beta  = 0 # y-axis
 gamma = 0 # z-axis
 
-# Offset for rotation(MagicaVpxel)
+# Offset for rotation(MagicaVoxel)
 offset_x = 0 # x-axis
 offset_y = 0 # y-axis
 offset_z = 7 # z-axis
@@ -50,7 +49,7 @@ offset_z = 7 # z-axis
 blockTypeId = 35
 blockData = 0
 
-mc = minecraft.Minecraft.create(server.address)
+mc = minecraft.Minecraft.create()
 
 def reset(x1, y1, z1, x2, y2, z2):
     #mc.postToChat('reset the world')
