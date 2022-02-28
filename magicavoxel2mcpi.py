@@ -20,16 +20,12 @@ is_even = False
 # Rotation degree (MagicaVoxel)
 alpha = 0  # x-axis
 beta = 0  # y-axis
-gamma = 180  # z-axis
+gamma = 0  # z-axis
 
 # Offset for rotation (MagicaVoxel)
 offset_x = 0  # x-axis
 offset_y = 0  # y-axis
 offset_z = 0  # z-axis
-
-# Block ID (default = 35:0 = White Wool)
-blockTypeId = 35
-blockData = 0
 
 model_settings = {
     'x0': x0,

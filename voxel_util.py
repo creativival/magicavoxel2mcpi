@@ -24,7 +24,6 @@ def create_voxel(ply_file, model_settings):
         z = bp[2]
         block_type_id = bp[3]
         block_data = bp[4]
-        print(block_type_id, block_data)
         set_block(x, y, z, block_type_id, block_data, model_settings)
 
 
@@ -64,7 +63,6 @@ def ply_to_position_list(ply_file):
             b = int(vertex1[5])
 
             # block color
-            print(vertex1)
             if r == 0:
                 if g == 0:
                     if b == 0:
@@ -138,42 +136,30 @@ def set_block(x, y, z, block_type_id, block_data, model_settings):
     offset_z = model_settings['offset_z']
 
     if is_even:
-        # x-rotation degree alpha
-        xx = x - offset_x + 0.5
-        yx = ((y - offset_y + 0.5) * math.cos(math.radians(alpha)) - (z - offset_z + 0.5) * math.sin(
-            math.radians(alpha)))
-        zx = ((y - offset_y + 0.5) * math.sin(math.radians(alpha)) + (z - offset_z + 0.5) * math.cos(
-            math.radians(alpha)))
-        # y-rotation degree beta
-        xy = (zx * math.sin(math.radians(beta)) + xx * math.cos(math.radians(beta)))
-        yy = yx
-        zy = (zx * math.cos(math.radians(beta)) - xx * math.sin(math.radians(beta)))
-        # z-rotation degree gamma
-        xz = (xy * math.cos(math.radians(gamma)) - yy * math.sin(math.radians(gamma)))
-        yz = (xy * math.sin(math.radians(gamma)) + yy * math.cos(math.radians(gamma)))
-        zz = zy
-        # bug fix
-        x = round(xz, 3)
-        y = round(yz, 3)
-        z = round(zz, 3)
-        # set block
-        mc.setBlock(x0 + y + offset_y, y0 + z + offset_z, z0 + x + offset_x, block_type_id, block_data)
-    else:  # odd
-        # x-rotation degree alpha
-        xx = x - offset_x
-        yx = ((y - offset_y) * math.cos(math.radians(alpha)) - (z - offset_z) * math.sin(math.radians(alpha)))
-        zx = ((y - offset_y) * math.sin(math.radians(alpha)) + (z - offset_z) * math.cos(math.radians(alpha)))
-        # y-rotation degree beta
-        xy = (zx * math.sin(math.radians(beta)) + xx * math.cos(math.radians(beta)))
-        yy = yx
-        zy = (zx * math.cos(math.radians(beta)) - xx * math.sin(math.radians(beta)))
-        # z-rotation degree gamma
-        xz = (xy * math.cos(math.radians(gamma)) - yy * math.sin(math.radians(gamma)))
-        yz = (xy * math.sin(math.radians(gamma)) + yy * math.cos(math.radians(gamma)))
-        zz = zy
-        # bug fix
-        x = round(xz, 3)
-        y = round(yz, 3)
-        z = round(zz, 3)
-        # set block
-        mc.setBlock(x0 + y + offset_y, y0 + z + offset_z, z0 + x + offset_x, block_type_id, block_data)
+        x += 0.5
+        z += 0.5
+
+    # x-rotation degree alpha
+    xx = x - offset_x
+    yx = ((y - offset_y) * math.cos(math.radians(alpha)) - (z - offset_z) * math.sin(math.radians(alpha)))
+    zx = ((y - offset_y) * math.sin(math.radians(alpha)) + (z - offset_z) * math.cos(math.radians(alpha)))
+    # y-rotation degree beta
+    xy = (zx * math.sin(math.radians(beta)) + xx * math.cos(math.radians(beta)))
+    yy = yx
+    zy = (zx * math.cos(math.radians(beta)) - xx * math.sin(math.radians(beta)))
+    # z-rotation degree gamma
+    xz = (xy * math.cos(math.radians(gamma)) - yy * math.sin(math.radians(gamma)))
+    yz = (xy * math.sin(math.radians(gamma)) + yy * math.cos(math.radians(gamma)))
+    zz = zy
+
+    # bug fix
+    x = round(xz, 3)
+    y = round(yz, 3)
+    z = round(zz, 3)
+    # player position
+    player_position = list(map(int, mc.player.getPos()))
+    x += player_position[2]
+    y += player_position[0]
+    z += player_position[1]
+    # set block
+    mc.setBlock(x0 + y + offset_y, y0 + z + offset_z, z0 + x + offset_x, block_type_id, block_data)
