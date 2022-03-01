@@ -55,7 +55,7 @@ model_settings = {
 }
 
 post_to_chat('animation polygon file format model')
-box_positions_list = [ply_to_positions(ply_file) for ply_file in ply_files]
+box_positions_list = [ply_to_positions('data/' + ply_file) for ply_file in ply_files]
 
 
 for i in range(repeat_count):

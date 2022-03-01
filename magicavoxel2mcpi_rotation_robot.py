@@ -9,10 +9,10 @@ from voxel_util import create_voxel, post_to_chat, ply_to_positions, reset
 from time import sleep
 
 # polygon file format exported from MagicaVoxel
-body_ply_file = 'robot-body.ply'
-head_ply_file = 'robot-head.ply'
-hands_ply_file = 'robot-hands.ply'
-propeller_ply_file = 'robot-propeller.ply'
+body_ply_file = 'data/robot-body.ply'
+head_ply_file = 'data/robot-head.ply'
+hands_ply_file = 'data/robot-hands.ply'
+propeller_ply_file = 'data/robot-propeller.ply'
 
 # reset_stop
 reset_stop = 0.01

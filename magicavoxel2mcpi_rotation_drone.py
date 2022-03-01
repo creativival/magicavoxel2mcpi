@@ -9,8 +9,8 @@ from voxel_util import create_voxel, post_to_chat, ply_to_positions, reset
 from time import sleep
 
 # polygon file format exported from MagicaVoxel
-body_ply_file = 'drone-body.ply'
-part_ply_file = 'drone-propeller.ply'
+body_ply_file = 'data/drone-body.ply'
+part_ply_file = 'data/drone-propeller.ply'
 
 # reset_stop
 reset_stop = 0.01

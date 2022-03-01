@@ -7,7 +7,7 @@
 from voxel_util import create_voxel, post_to_chat, ply_to_positions
 
 # polygon file format exported from MagicaVoxel
-ply_file = 'box2x2.ply'
+ply_file = 'data/box2x2.ply'
 
 # Origin to create (Minecraft)
 x0 = 0
