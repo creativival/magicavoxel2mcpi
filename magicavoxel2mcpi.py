@@ -14,9 +14,6 @@ x0 = 0
 y0 = 5
 z0 = 0
 
-# Model size
-is_even = False
-
 # Rotation degree (MagicaVoxel)
 alpha = 0  # x-axis
 beta = 0  # y-axis
@@ -31,7 +28,6 @@ model_settings = {
     'x0': x0,
     'y0': y0,
     'z0': z0,
-    'is_even': is_even,
     'alpha': alpha,
     'beta': beta,
     'gamma': gamma,

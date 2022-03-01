@@ -18,7 +18,7 @@ reset_stop = 0.01
 create_stop = 0.1
 
 # repeat repeat_count
-repeat_count = 200
+repeat_count = 50
 
 # reset area
 reset_area = (-10, 0, -10, 10, 20, 10)
@@ -27,9 +27,6 @@ reset_area = (-10, 0, -10, 10, 20, 10)
 x0 = 0
 y0 = 0
 z0 = 0
-
-# Model size
-is_even = True
 
 # Rotation degree (MagicaVoxel)
 alpha = 0  # x-axis
@@ -45,7 +42,6 @@ model_settings = {
     'x0': x0,
     'y0': y0,
     'z0': z0,
-    'is_even': is_even,
     'alpha': alpha,
     'beta': beta,
     'gamma': gamma,

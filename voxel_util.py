@@ -174,7 +174,6 @@ def set_block(x, y, z, block_type_id, block_data, model_settings):
     x0 = model_settings['x0']
     y0 = model_settings['y0']
     z0 = model_settings['z0']
-    is_even = model_settings['is_even']
     alpha = model_settings['alpha']
     beta = model_settings['beta']
     gamma = model_settings['gamma']
@@ -182,10 +181,9 @@ def set_block(x, y, z, block_type_id, block_data, model_settings):
     offset_y = model_settings['offset_y']
     offset_z = model_settings['offset_z']
 
-    # if is_even:
-    #     x += 0.5
-    #     y += 0.5
-    #     z += 0.5
+    # x += 0.5
+    # y += 0.5
+    # z += 0.5
 
     # x-rotation degree alpha
     xx = x - offset_x

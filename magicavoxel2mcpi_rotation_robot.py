@@ -21,15 +21,12 @@ reset_stop = 0.01
 create_stop = 0.5
 
 # repeat repeat_count
-repeat = 100
+repeat = 50
 
 # Origin to create (Minecraft)
 x0 = 0
 y0 = 0
 z0 = 0
-
-# Model size
-is_even = True
 
 # Rotation degree (MagicaVoxel)
 alpha = 0  # x-axis
@@ -45,7 +42,6 @@ model_settings = {
     'x0': x0,
     'y0': y0,
     'z0': z0,
-    'is_even': is_even,
     'alpha': alpha,
     'beta': beta,
     'gamma': gamma,
@@ -64,6 +60,7 @@ propeller_box_positions = ply_to_positions(propeller_ply_file)
 create_voxel(body_box_positions, model_settings)
 
 for i in range(repeat):
+    model_settings['x0'] = 0
     reset(-5, 9, -5, 5, 15, 5)
     reset(-8, 0, -7, 7, 14, -5)
     reset(-7, 0, 4, 7, 14, 7)
@@ -80,6 +77,7 @@ for i in range(repeat):
     model_settings['alpha'] = 0
     model_settings['beta'] = 6 * i
     model_settings['gamma'] = 0
+    model_settings['x0'] = -4
     create_voxel(propeller_box_positions, model_settings)
     if (6 * i) % 90 == 0:
         sleep(2 * create_stop)
