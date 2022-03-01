@@ -5,7 +5,9 @@
 #
 
 
-from voxel_util import create_voxel, post_to_chat, ply_to_positions, reset
+from voxel_util import create_voxel, post_to_chat, ply_to_positions, reset_area
+from magicavoxel_axis import axis
+from all_clear import clear
 from time import sleep
 
 # polygon file format exported from MagicaVoxel
@@ -33,11 +35,6 @@ alpha = 0  # x-axis
 beta = 0  # y-axis
 gamma = 0  # z-axis
 
-# Offset for rotation(MagicaVoxel)
-offset_x = 0  # x-axis
-offset_y = 0  # y-axis
-offset_z = 7  # z-axis
-
 model_settings = {
     'x0': x0,
     'y0': y0,
@@ -45,9 +42,6 @@ model_settings = {
     'alpha': alpha,
     'beta': beta,
     'gamma': gamma,
-    'offset_x': offset_x,
-    'offset_y': offset_y,
-    'offset_z': offset_z,
 }
 
 post_to_chat('animation polygon file format model')
@@ -56,15 +50,18 @@ head_box_positions = ply_to_positions(head_ply_file)
 hands_box_positions = ply_to_positions(hands_ply_file)
 propeller_box_positions = ply_to_positions(propeller_ply_file)
 
+clear()
 # create body
 create_voxel(body_box_positions, model_settings)
 
+# shift rotate axis
+model_settings['offset_z'] = 7
 for i in range(repeat):
     model_settings['x0'] = 0
-    reset(-5, 9, -5, 5, 15, 5)
-    reset(-8, 0, -7, 7, 14, -5)
-    reset(-7, 0, 4, 7, 14, 7)
-    reset(-6, 3, -4, -4, 11, 4)
+    reset_area(-5, 9, -5, 5, 15, 5)
+    reset_area(-8, 0, -7, 7, 14, -5)
+    reset_area(-7, 0, 4, 7, 14, 7)
+    reset_area(-6, 3, -4, -4, 11, 4)
     sleep(reset_stop)
     model_settings['alpha'] = 0
     model_settings['beta'] = 0

@@ -5,6 +5,9 @@
 #
 
 from voxel_util import create_voxel, post_to_chat, ply_to_positions
+from magicavoxel_axis import axis
+from all_clear import clear
+from time import sleep
 
 # polygon file format exported from MagicaVoxel
 ply_file = 'data/box2x2.ply'
@@ -19,11 +22,6 @@ alpha = 0  # x-axis
 beta = 0  # y-axis
 gamma = 0  # z-axis
 
-# Offset for rotation (MagicaVoxel)
-offset_x = 0  # x-axis
-offset_y = 0  # y-axis
-offset_z = 0  # z-axis
-
 model_settings = {
     'x0': x0,
     'y0': y0,
@@ -31,11 +29,9 @@ model_settings = {
     'alpha': alpha,
     'beta': beta,
     'gamma': gamma,
-    'offset_x': offset_x,
-    'offset_y': offset_y,
-    'offset_z': offset_z,
 }
 
+clear()
 post_to_chat('create polygon file format model')
 box_positions = ply_to_positions(ply_file)
 create_voxel(box_positions, model_settings)

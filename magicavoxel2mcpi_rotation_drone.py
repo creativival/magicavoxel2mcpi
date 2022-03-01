@@ -5,7 +5,9 @@
 #
 
 
-from voxel_util import create_voxel, post_to_chat, ply_to_positions, reset
+from voxel_util import create_voxel, post_to_chat, ply_to_positions, reset_area
+from magicavoxel_axis import axis
+from all_clear import clear
 from time import sleep
 
 # polygon file format exported from MagicaVoxel
@@ -43,22 +45,21 @@ model_settings = {
     'alpha': alpha,
     'beta': beta,
     'gamma': gamma,
-    'offset_x': offset_x,
-    'offset_y': offset_y,
-    'offset_z': offset_z,
 }
 
 post_to_chat('animation polygon file format model')
 body_box_positions = ply_to_positions(body_ply_file)
 part_box_positions = ply_to_positions(part_ply_file)
 
+clear()
 # create body
 model_settings['x0'] = 0
 create_voxel(body_box_positions, model_settings)
+
 # create parts
 for i in range(repeat_count):
     print(i)
-    reset(-25, 18, -25, 25, 18, 25)
+    reset_area(-25, 18, -25, 25, 18, 25)
     sleep(reset_stop)
     model_settings['gamma'] = 6 * i
     model_settings['x0'] = 14

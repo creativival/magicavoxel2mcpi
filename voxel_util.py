@@ -15,7 +15,7 @@ def post_to_chat(message):
     mc.postToChat(message)
 
 
-def reset(x1, y1, z1, x2, y2, z2):
+def reset_area(x1, y1, z1, x2, y2, z2):
     mc.setBlocks(x1, y1, z1, x2, y2, z2, 0)
 
 
@@ -115,16 +115,12 @@ def ply_to_positions(ply_file):
             # minimum unit: 0.1
             if x > 0:
                 position_x = int(x * 10 / step + 0.0001) / 10.0
-                # print(x, x * 10 / step, int(x * 10 / step + 0.0001), position_x)
             else:
                 position_x = int(x * 10 / step - 0.0001) / 10.0
-                # print(x, x * 10 / step, int(x * 10 / step - 0.0001), position_x)
             if y > 0:
                 position_y = int(y * 10 / step + 0.0001) / 10.0
-                # print(y, y * 10 / step, int(y * 10 / step + 0.0001), position_y)
             else:
                 position_y = int(y * 10 / step - 0.0001) / 10.0
-                # print(y, y * 10 / step, int(y * 10 / step - 0.0001), position_y)
             if z > 0:
                 position_z = int(z * 10 / step + 0.0001) / 10.0
             else:
@@ -142,7 +138,7 @@ def ply_to_positions(ply_file):
         # sort
         box_positions = list(box_positions)
         box_positions.sort(key=lambda x: x[2])
-        print(box_positions)
+        # print(box_positions)
 
         # centering
         max_x = max([bp[0] for bp in box_positions])
@@ -155,17 +151,15 @@ def ply_to_positions(ply_file):
         for bp in box_positions:
             bp = list(bp)
             if bp[0] - average_x > 0:
-                # print(bp[0], bp[0] - average_x, bp[0] - average_x + 0.0001)
                 bp[0] = int((bp[0] - average_x + 0.0001) * 10) / 10.0
             else:
-                # print(bp[0], bp[0] - average_x, bp[0] - average_x - 0.0001)
                 bp[0] = int((bp[0] - average_x - 0.0001) * 10) / 10.0
             if bp[1] - average_y > 0:
                 bp[1] = int((bp[1] - average_y + 0.0001) * 10) / 10.0
             else:
                 bp[1] = int((bp[1] - average_y - 0.0001) * 10) / 10.0
             centering_box_positions.append(bp)
-        print(centering_box_positions)
+        # print(centering_box_positions)
 
         return centering_box_positions
 
@@ -177,13 +171,9 @@ def set_block(x, y, z, block_type_id, block_data, model_settings):
     alpha = model_settings['alpha']
     beta = model_settings['beta']
     gamma = model_settings['gamma']
-    offset_x = model_settings['offset_x']
-    offset_y = model_settings['offset_y']
-    offset_z = model_settings['offset_z']
-
-    # x += 0.5
-    # y += 0.5
-    # z += 0.5
+    offset_x = model_settings['offset_x'] if 'offset_x' in model_settings else 0
+    offset_y = model_settings['offset_y'] if 'offset_y' in model_settings else 0
+    offset_z = model_settings['offset_z'] if 'offset_z' in model_settings else 0
 
     # x-rotation degree alpha
     xx = x - offset_x
@@ -199,14 +189,26 @@ def set_block(x, y, z, block_type_id, block_data, model_settings):
     zz = zy
 
     # bug fix
-    x = round(xz, 3)
-    y = round(yz, 3)
-    z = round(zz, 3)
+    position_x = yz + offset_y
+    position_y = zz + offset_z
+    position_z = xz + offset_x
+    if position_x > 0:
+        position_x = int(position_x + 0.0001)
+    else:
+        position_x = int(position_x - 0.0001)
+    if position_y > 0:
+        position_y = int(position_y + 0.0001)
+    else:
+        position_y = int(position_y - 0.0001)
+    if position_z > 0:
+        position_z = int(position_z + 0.0001)
+    else:
+        position_z = int(position_z - 0.0001)
     # set block
     mc.setBlock(
-        x0 + y + offset_y,
-        y0 + z + offset_z,
-        z0 + x + offset_x,
+        x0 + position_x,
+        y0 + position_y,
+        z0 + position_z,
         block_type_id,
         block_data
     )
