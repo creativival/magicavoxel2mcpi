@@ -113,16 +113,61 @@ def ply_to_positions(ply_file):
                     z -= step
 
             # minimum unit: 0.1
+            if x > 0:
+                position_x = int(x * 10 / step + 0.0001) / 10.0
+                # print(x, x * 10 / step, int(x * 10 / step + 0.0001), position_x)
+            else:
+                position_x = int(x * 10 / step - 0.0001) / 10.0
+                # print(x, x * 10 / step, int(x * 10 / step - 0.0001), position_x)
+            if y > 0:
+                position_y = int(y * 10 / step + 0.0001) / 10.0
+                # print(y, y * 10 / step, int(y * 10 / step + 0.0001), position_y)
+            else:
+                position_y = int(y * 10 / step - 0.0001) / 10.0
+                # print(y, y * 10 / step, int(y * 10 / step - 0.0001), position_y)
+            if z > 0:
+                position_z = int(z * 10 / step + 0.0001) / 10.0
+            else:
+                position_z = int(z * 10 / step - 0.0001) / 10.0
             box_positions.add(
-                (int(x * 10 / step) / 10.0, int(y * 10 / step) / 10.0, int(z * 10 / step) / 10.0, block_type_id,
-                 block_data)
+                (
+                    position_x,
+                    position_y,
+                    position_z,
+                    block_type_id,
+                    block_data
+                )
             )
 
         # sort
         box_positions = list(box_positions)
         box_positions.sort(key=lambda x: x[2])
+        print(box_positions)
 
-        return box_positions
+        # centering
+        max_x = max([bp[0] for bp in box_positions])
+        min_x = min([bp[0] for bp in box_positions])
+        average_x = int((max_x + min_x) * 5) / 10.0
+        max_y = max([bp[1] for bp in box_positions])
+        min_y = min([bp[1] for bp in box_positions])
+        average_y = int((max_y + min_y) * 5) / 10.0
+        centering_box_positions = []
+        for bp in box_positions:
+            bp = list(bp)
+            if bp[0] - average_x > 0:
+                # print(bp[0], bp[0] - average_x, bp[0] - average_x + 0.0001)
+                bp[0] = int((bp[0] - average_x + 0.0001) * 10) / 10.0
+            else:
+                # print(bp[0], bp[0] - average_x, bp[0] - average_x - 0.0001)
+                bp[0] = int((bp[0] - average_x - 0.0001) * 10) / 10.0
+            if bp[1] - average_y > 0:
+                bp[1] = int((bp[1] - average_y + 0.0001) * 10) / 10.0
+            else:
+                bp[1] = int((bp[1] - average_y - 0.0001) * 10) / 10.0
+            centering_box_positions.append(bp)
+        print(centering_box_positions)
+
+        return centering_box_positions
 
 
 def set_block(x, y, z, block_type_id, block_data, model_settings):
@@ -137,10 +182,10 @@ def set_block(x, y, z, block_type_id, block_data, model_settings):
     offset_y = model_settings['offset_y']
     offset_z = model_settings['offset_z']
 
-    if is_even:
-        x += 0.5
-        y += 0.5
-        z += 0.5
+    # if is_even:
+    #     x += 0.5
+    #     y += 0.5
+    #     z += 0.5
 
     # x-rotation degree alpha
     xx = x - offset_x

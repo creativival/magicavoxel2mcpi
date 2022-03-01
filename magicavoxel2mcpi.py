@@ -7,12 +7,12 @@
 from voxel_util import create_voxel, post_to_chat, ply_to_positions
 
 # polygon file format exported from MagicaVoxel
-ply_file = 'chick.ply'
+ply_file = 'box2x2.ply'
 
 # Origin to create (Minecraft)
-x0 = 10
-y0 = 0
-z0 = 10
+x0 = 0
+y0 = 5
+z0 = 0
 
 # Model size
 is_even = False
