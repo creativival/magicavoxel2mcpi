@@ -53,7 +53,7 @@ Edit magicavoxel2mcpi_animation.py
 
 ```
 magicavoxel2mcpi_animation.py
-plys = ['xxx1.ply', 'xxx2.ply', 'xxx3.ply',...]
+ply_files = ['xxx1.ply', 'xxx2.ply', 'xxx3.ply',...]
 ```
 
 Terminal command     

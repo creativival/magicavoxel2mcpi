@@ -11,9 +11,9 @@ from all_clear import clear
 from time import sleep
 
 # polygon file format exported from MagicaVoxel
-body_ply_file = 'data/walking_cat_body.ply'
-part_ply_file = 'data/walking_cat_limbs.ply'
-part_reverse_ply_file = 'data/walking_cat_limbs_reverse.ply'
+body_ply_file = 'walking_cat_body.ply'
+part_ply_file = 'walking_cat_limbs.ply'
+part_reverse_ply_file = 'walking_cat_limbs_reverse.ply'
 
 # reset_stop
 reset_stop = 0.01

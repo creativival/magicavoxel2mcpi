@@ -10,7 +10,7 @@ from all_clear import clear
 from time import sleep
 
 # polygon file format exported from MagicaVoxel
-ply_file = 'data/box2x2.ply'
+ply_file = 'piyo.ply'
 
 # Origin to create (Minecraft)
 x0 = 0

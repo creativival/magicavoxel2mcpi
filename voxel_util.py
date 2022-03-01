@@ -45,7 +45,7 @@ def ply_to_positions(ply_file):
     # PLY よりボックスの座標を読み込む
     block_type_id = 35
     box_positions = set()
-    with open(ply_file, 'r') as f:
+    with open('data/' + ply_file, 'r') as f:
         lines = f.read()
         lines = lines.replace('\r\n', '\n')
         lines = lines.strip()
@@ -65,38 +65,40 @@ def ply_to_positions(ply_file):
             b = int(vertex1[5])
 
             # block color
-            if r == 0:
-                if g == 0:
-                    if b == 0:
-                        block_data = 15  # black 0,0,0
-                    else:
-                        block_data = 11  # blue 0,0,255
-                elif g == 80:
-                    if b == 0:
-                        block_data = 13  # green 0,80,0
-                    else:
-                        block_data = 0  # white(default) 0,80,x
-                else:
-                    if b == 0:
-                        block_data = 5  # lime 0,255,0
-                    else:
-                        block_data = 9  # cyan 0,255,255
-            else:
-                if g == 0:
-                    if b == 0:
-                        block_data = 14  # red 255,0,0
-                    else:
-                        block_data = 2  # magenta 255,0,255
-                elif g == 165:
-                    if b == 0:
-                        block_data = 1  # orange 255,165,0
-                    else:
-                        block_data = 0  # white(default) 255,165,x
-                else:
-                    if b == 0:
-                        block_data = 4  # yellow 255,255,0
-                    else:
-                        block_data = 0  # white(default) x,x,x
+            if [r, g, b] == [255, 255, 255]:  # white
+                block_data = 0
+            elif [r, g, b] == [255, 127, 0]:  # orange
+                block_data = 1
+            elif [r, g, b] == [255, 0, 255]:  # magenta
+                block_data = 2
+            elif [r, g, b] == [127, 127, 255]:  # lightblue
+                block_data = 3
+            elif [r, g, b] == [255, 255, 0]:  # yellow
+                block_data = 4
+            elif [r, g, b] == [0, 255, 0]:  # lime
+                block_data = 5
+            elif [r, g, b] == [255, 127, 127]:  # pink
+                block_data = 6
+            elif [r, g, b] == [127, 127, 127]:  # gray
+                block_data = 7
+            elif [r, g, b] == [191, 191, 191]:  # lightgray
+                block_data = 8
+            elif [r, g, b] == [0, 255, 255]:  # cyan
+                block_data = 9
+            elif [r, g, b] == [127, 0, 127]:  # purple
+                block_data = 10
+            elif [r, g, b] == [0, 0, 255]:  # blue
+                block_data = 11
+            elif [r, g, b] == [127, 0, 0]:  # brown
+                block_data = 12
+            elif [r, g, b] == [0, 127, 0]:  # green
+                block_data = 13
+            elif [r, g, b] == [255, 0, 0]:  # red
+                block_data = 14
+            elif [r, g, b] == [0, 0, 0]:  # black
+                block_data = 15
+            else:  # default (white)
+                block_data = 0
 
             # ボックスを置く方向を解析
             if vertex1[0] == vertex2[0] and vertex2[0] == vertex3[0]:  # y-z plane
@@ -159,6 +161,10 @@ def ply_to_positions(ply_file):
             else:
                 bp[1] = int((bp[1] - average_y - 0.0001) * 10) / 10.0
             centering_box_positions.append(bp)
+        # print(centering_box_positions)
+
+        # round down 0.5 (bug fix)
+        centering_box_positions = [[math.floor(p) for p in bp] for bp in centering_box_positions]
         # print(centering_box_positions)
 
         return centering_box_positions

@@ -11,8 +11,8 @@ from all_clear import clear
 from time import sleep
 
 # polygon file format exported from MagicaVoxel
-body_ply_file = 'data/drone-body.ply'
-part_ply_file = 'data/drone-propeller.ply'
+body_ply_file = 'drone-body.ply'
+part_ply_file = 'drone-propeller.ply'
 
 # reset_stop
 reset_stop = 0.01

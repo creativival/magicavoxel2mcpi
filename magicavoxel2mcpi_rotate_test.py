@@ -10,7 +10,7 @@ from all_clear import clear
 from time import sleep
 
 # polygon file format exported from MagicaVoxel
-ply_file = 'data/drone-propeller.ply'
+ply_file = 'drone-propeller.ply'
 
 # Origin to create (Minecraft)
 x0 = 20
