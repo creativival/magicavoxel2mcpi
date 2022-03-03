@@ -1,24 +1,24 @@
 # magicavoxel2mcpi
 
-[日本語](/README.md)
+[Japanese](/README.md)
 
 [English](/README.en.md)
 
-MagicaVoxel モデルを Minecraft PI にコピーする Python スクリプトです。
+Python script to connect MagicaVoxel to Minecraft PI.
 
 <img width="1440" alt="screenshot_1122" src="https://user-images.githubusercontent.com/33368327/44855279-ab667500-aca5-11e8-8320-a025afcab091.png">
 
-対応バージョン: Minecraft Pi (Raspberry Pi) または Minecraft (JAVA EDITION) + Forge + RaspberryJamMod
+Corresponding version: Minecraft Pi (Raspberry Pi) or Minecraft (JAVA EDITION) + Forge + RaspberryJamMod
 
-## 使い方
+## How to use
 
-MagicaVoxel でボクセルモデルを作り、"ply" (polygon file format) 形式でエキスポートします。
+Create a voxel-model with MagicaVoxel and export "ply" (polygon file format).
 
-python-scripts.zip をダウンロードします。
+Download python-scripts.zip from    
 
 https://github.com/arpruss/raspberryjammod/releases
 
-python-scripts.zip を解凍して、ルートディレクトリーにコピーします。
+Unzip python-scripts.zip and copy it to root directory.
 
 ```
 magicavoxel2mcpi/  
@@ -33,16 +33,15 @@ magicavoxel2mcpi/
     ├ ...    
 ```
 
-マインクラフトでワールドを開いてから、次のコマンドを実行します。
+Open the world in Minecraft, then run the following command:
 
 ```
 cd magicavoxel2mcpi
 python magicavoxel2mcpi.py
 ```
 
-## 色
-
-16色の色を再現できます。
+## Colors
+You can reproduce 16 colors.
 
 ```
 colors = [
@@ -64,14 +63,14 @@ colors = [
     [0, 0, 0],  # black
 ]
 ```
-MagicaVoxel でモデルを作るとき、16色だけのパレットを使うことをお勧めします。
-'pal_16colors.png' は、'images'ディレクトリーに含まれています。
+It is recommended to use '16 colors only' palette when creating the voxel-model with MagicaVoxel.  
+'pal_16colors.png' are contained in the 'images' directory.
 
 ![](images/select_palette.png)
 
 ![](images/magicavoxel_with_original_palette.png)
 
-## 回転
+## Rotation
 
 ```python
 # Rotation degree (MagicaVoxel)
@@ -80,26 +79,25 @@ beta = 0  # y-axis
 gamma = 0  # z-axis
 ```
 
-alpha (x軸回転　度)  
-beta (y軸回転　度)   
-gamma (z軸回転　度)    
+alpha (x-rotation degree)  
+beta (y-rotation degree)   
+gamma (z-rotation degree)    
 
-注意: 回転軸は MagicaVoxel で実装しました。Minecraft ではありません。
+Note: It is the coordinate axis of MagicaVoxel not Minecraft.  
 
 ![magicavoxel2mcpi_rotaion](https://user-images.githubusercontent.com/33368327/44855928-1a909900-aca7-11e8-9182-99df906f43be.jpg)
 
-## アニメーション
+## Animation
+Create a few voxel-model and copy them to 'data' directory.
 
-複数のボクセルモデルを作成し、'data'ディレクトリーにコピーします。
-
-magicavoxel2mcpi_animation.py を編集します。
+Edit magicavoxel2mcpi_animation.py     
 
 ```
 magicavoxel2mcpi_animation.py
 ply_files = ['xxx1.ply', 'xxx2.ply', 'xxx3.ply',...]
 ```
 
-マインクラフトでワールドを開いてから、次のコマンドを実行します。
+Open the world in Minecraft, then run the following command:
 
 ```
 python magicavoxel2mcpi_animation.py
@@ -107,11 +105,11 @@ python magicavoxel2mcpi_animation.py
 
 ![w6zcgpvpav9c3iza](https://user-images.githubusercontent.com/33368327/44870045-05793180-acca-11e8-8d97-84c9c7cde7c2.gif)
 
-## 回転アニメーション
+## Rotating Animation
 
-回転部分と固定部分を別のモデルとして作成します。それらを 'data'ディレクトリーにコピーします。 
+Divide the rotating parts, Create a voxel-model and copy them to 'data' directory.
 
-magicavoxel2mcpi_rotation_robot.py または rotation_drone.py を編集して、モデルを読み込みます。
+Edit magicavoxel2mcpi_rotation_robot.py or rotation_drone.py to read them.    
 
 ```python
 # polygon file format exported from MagicaVoxel
@@ -121,7 +119,7 @@ hands_ply_file = 'robot-hands.ply'
 propeller_ply_file = 'robot-propeller.ply'
 ```
 
-回転軸を調整します。
+Adjust the rotating axis.
 
 ```python
 # shift rotate axis
@@ -129,8 +127,7 @@ model_settings['offset_x'] = 0.5
 model_settings['offset_y'] = 0.5
 model_settings['offset_z'] = 6.5
 ```
-
-マインクラフトでワールドを開いてから、次のコマンドを実行します。
+Open the world in Minecraft, then run the following command:
 
 ```
 python magicavoxel2mcpi_rotation_robot.py
@@ -139,11 +136,11 @@ python magicavoxel2mcpi_rotation_robot.py
 
 ![5bbdsr7pmh3g5fcp](https://user-images.githubusercontent.com/33368327/44958372-48314880-af1a-11e8-94f7-c198547c6eba.gif)
 
-## 歩く猫
+## Walking Cat
 
-腕と体を別のモデルとして作成し、'data'ディレクトリーにコピーします。
+Create and separate body and limb. Export "ply" and move ".ply" files into "mcpipy" folder    
 
-magicavoxel2mcpi_walking_cat.py を編集して、モデルを読み込みます。
+Edit magicavoxel2mcpi_walking_cat.py    
 
 ```python
 # polygon file format exported from MagicaVoxel
@@ -153,7 +150,7 @@ part_reverse_ply_file = 'walking_cat_limbs_reverse.ply'
 
 ```
 
-マインクラフトでワールドを開いてから、次のコマンドを実行します。
+Open the world in Minecraft, then run the following command:
 
 ```
 python magicavoxel2mcpi_walking_cat.py

@@ -44,24 +44,27 @@ model_settings = {
     'gamma': gamma,
 }
 
+
+clear()
+axis()
 post_to_chat('animation polygon file format model')
 body_box_positions = ply_to_positions(body_ply_file)
 head_box_positions = ply_to_positions(head_ply_file)
 hands_box_positions = ply_to_positions(hands_ply_file)
 propeller_box_positions = ply_to_positions(propeller_ply_file)
-
-clear()
 # create body
 create_voxel(body_box_positions, model_settings)
 
 # shift rotate axis
-model_settings['offset_z'] = 7
+model_settings['offset_x'] = 0.5
+model_settings['offset_y'] = 0.5
+model_settings['offset_z'] = 6.5
 for i in range(repeat):
     model_settings['x0'] = 0
-    reset_area(-5, 9, -5, 5, 15, 5)
-    reset_area(-8, 0, -7, 7, 14, -5)
-    reset_area(-7, 0, 4, 7, 14, 7)
-    reset_area(-6, 3, -4, -4, 11, 4)
+    reset_area(-5, 9, -5, 5, 15, 5)  # head
+    reset_area(-7, 0, -6, 7, 14, -4)  # right hand
+    reset_area(-7, 0, 5, 7, 14, 8)  # left hand
+    reset_area(-6, 3, -4, -4, 11, 4)  # propeller"
     sleep(reset_stop)
     model_settings['alpha'] = 0
     model_settings['beta'] = 0

@@ -47,11 +47,11 @@ model_settings = {
     'gamma': gamma,
 }
 
+clear()
 post_to_chat('animation polygon file format model')
 body_box_positions = ply_to_positions(body_ply_file)
 part_box_positions = ply_to_positions(part_ply_file)
 
-clear()
 # create body
 model_settings['x0'] = 0
 create_voxel(body_box_positions, model_settings)

@@ -21,9 +21,9 @@ def reset_area(x1, y1, z1, x2, y2, z2):
 
 def create_voxel(box_positions, model_settings):
     for bp in box_positions:
-        x = bp[0]
-        y = bp[1]
-        z = bp[2]
+        x = math.ceil(bp[0])
+        y = math.ceil(bp[1])
+        z = math.ceil(bp[2])
         block_type_id = bp[3]
         block_data = bp[4]
         set_block(x, y, z, block_type_id, block_data, model_settings)
@@ -67,7 +67,7 @@ def ply_to_positions(ply_file):
             # block color
             if [r, g, b] == [255, 255, 255]:  # white
                 block_data = 0
-            elif [r, g, b] == [255, 127, 0]:  # orange
+            elif [r, g, b] == [255, 127, 0] or [r, g, b] == [255, 165, 0]:  # orange
                 block_data = 1
             elif [r, g, b] == [255, 0, 255]:  # magenta
                 block_data = 2
@@ -91,7 +91,7 @@ def ply_to_positions(ply_file):
                 block_data = 11
             elif [r, g, b] == [127, 0, 0]:  # brown
                 block_data = 12
-            elif [r, g, b] == [0, 127, 0]:  # green
+            elif [r, g, b] == [0, 127, 0] or [r, g, b] == [0, 80, 0]:  # green
                 block_data = 13
             elif [r, g, b] == [255, 0, 0]:  # red
                 block_data = 14
@@ -115,18 +115,9 @@ def ply_to_positions(ply_file):
                     z -= step
 
             # minimum unit: 0.1
-            if x > 0:
-                position_x = int(x * 10 / step + 0.0001) / 10.0
-            else:
-                position_x = int(x * 10 / step - 0.0001) / 10.0
-            if y > 0:
-                position_y = int(y * 10 / step + 0.0001) / 10.0
-            else:
-                position_y = int(y * 10 / step - 0.0001) / 10.0
-            if z > 0:
-                position_z = int(z * 10 / step + 0.0001) / 10.0
-            else:
-                position_z = int(z * 10 / step - 0.0001) / 10.0
+            position_x = round(x * 10.0 / step) / 10.0
+            position_y = round(y * 10.0 / step) / 10.0
+            position_z = round(z * 10.0 / step) / 10.0
             box_positions.add(
                 (
                     position_x,
@@ -151,20 +142,17 @@ def ply_to_positions(ply_file):
         average_y = int((max_y + min_y) * 5) / 10.0
         centering_box_positions = []
         for bp in box_positions:
-            bp = list(bp)
-            if bp[0] - average_x > 0:
-                bp[0] = int((bp[0] - average_x + 0.0001) * 10) / 10.0
-            else:
-                bp[0] = int((bp[0] - average_x - 0.0001) * 10) / 10.0
-            if bp[1] - average_y > 0:
-                bp[1] = int((bp[1] - average_y + 0.0001) * 10) / 10.0
-            else:
-                bp[1] = int((bp[1] - average_y - 0.0001) * 10) / 10.0
-            centering_box_positions.append(bp)
-        # print(centering_box_positions)
-
-        # round down 0.5 (bug fix)
-        centering_box_positions = [[math.floor(p) for p in bp] for bp in centering_box_positions]
+            x = round((bp[0] - average_x) * 10) / 10.0
+            y = round((bp[1] - average_y) * 10) / 10.0
+            centering_box_positions.append(
+                (
+                    x,
+                    y,
+                    bp[2],
+                    bp[3],
+                    bp[4],
+                 )
+            )
         # print(centering_box_positions)
 
         return centering_box_positions
